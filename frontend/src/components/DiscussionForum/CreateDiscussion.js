@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 import "./CreateDiscussion.css";
- 
+
 const CreateDiscussion = (props) => {
 	const [userId, setUserId] = useState("empty");
 	const token = localStorage.getItem("access_token");
@@ -43,7 +43,7 @@ const CreateDiscussion = (props) => {
 
 			const response = await fetch(
 				// `${process.env.REACT_APP_FETCH_URL}/create_post/${userId}`,
-				`http://127.0.0.1:8080/create_post/${userId}`,
+				`http://127.0.0.1:8090/create_post/${userId}`,
 				{
 					method: "POST",
 					headers: {

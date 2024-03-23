@@ -48,7 +48,7 @@ const AuthPage = (props) => {
 			password: register_password,
 		};
 
-		const response = await fetch("http://127.0.0.1:8080/user/signup", {
+		const response = await fetch("http://127.0.0.1:8090/user/signup", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
@@ -80,7 +80,7 @@ const AuthPage = (props) => {
 		console.log(process.env.REACT_APP_FETCH_URL);
 
 		// await fetch(`${process.env.REACT_APP_FETCH_URL}/user/login`, {
-		await fetch(`http://127.0.0.1:8080/user/login`, {
+		await fetch(`http://127.0.0.1:8090/user/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -98,6 +98,7 @@ const AuthPage = (props) => {
 			else {
 				console.log("login successful");
 				localStorage.setItem("access_token", jsonData.access_token);
+				console.log(localStorage.getItem("access_token"));
 				setRDirect(true);
 				setShowLogout(true);
 			}

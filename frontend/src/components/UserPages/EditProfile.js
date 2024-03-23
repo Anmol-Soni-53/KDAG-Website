@@ -13,10 +13,14 @@ const EditProfile = (props) => {
 		const fetchUserInfo = async () => {
 			try {
 				// const response = await fetch(`${process.env.REACT_APP_FETCH_URL}/user/profile/${user_id}`, {
+				const token = localStorage.getItem('access_token');
 				const response = await fetch(
-					`http://127.0.0.1:8080/user/profile/${user_id}`,
+					`http://127.0.0.1:8090/user/auth_profile`,
 					{
-						method: "GET",
+						method: "POST",
+						headers: {
+							'Authorization': `Bearer ${token}`
+						}
 					}
 				);
 				if (!response.ok) {
@@ -76,6 +80,61 @@ const EditProfile = (props) => {
 		}
 	}, [showLogout]);
 
+	const handleChange = (e) => {
+		const name = e.target.name;
+		const value = e.target.value;
+		setUserData(prevUserData => ({
+			...prevUserData,
+			[name]: value
+		}));
+
+	}
+	useEffect(() => {
+		console.log("Updated UserData:", userData);
+	}, [userData]);
+
+	// const editUserInfo = async (e) => {
+	// 	e.preventDefault();
+	// 	try {
+	// 		// const response = await fetch(`${process.env.REACT_APP_FETCH_URL}/user/profile/${user_id}`, {
+
+	// 	}
+	// };
+
+	const editUserInfo = async (e) => {
+		e.preventDefault();
+		console.log(process.env.REACT_APP_FETCH_URL);
+
+		// await fetch(`${process.env.REACT_APP_FETCH_URL}/user/login`, {
+		const token = localStorage.getItem('access_token');
+		await fetch(
+			`http://127.0.0.1:8090/user/edit_profile`,
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					'Authorization': `Bearer ${token}`
+				},
+				body: JSON.stringify({
+					...userData,
+				}),
+
+			}
+		).then(async (res) => {
+			let jsonData = await res.json();
+			if (!res.ok) {
+				// toast.error(jsonData.message);
+				console.log(jsonData);
+			}
+			//   setLoading(false);
+			else {
+				console.log("edit successful");
+				history.push(`/user_profile_self/${user_id}`);
+			}
+		});
+	};
+
+
 	return (
 		<div>
 			{showLogout && (
@@ -88,14 +147,15 @@ const EditProfile = (props) => {
 								<br />P<br />R<br />O<br />F<br />I<br />L<br />E
 							</p>
 						</div>
-						<form onSubmit={handleSubmit}>
+						<form onSubmit={editUserInfo}>
 							<div className="edit_profile_username">
 								<label>Username</label>
 								<br />
 								<input
+									name="username"
 									type="text"
 									value={userData.username}
-									onChange={(e) => setUsername(e.target.value)}
+									disabled
 								/>
 							</div>
 							<div className="edit_profile_firstname">
@@ -103,8 +163,9 @@ const EditProfile = (props) => {
 								<br />
 								<input
 									type="text"
+									name="f_name"
 									value={userData.f_name}
-									onChange={(e) => setFirstName(e.target.value)}
+									onChange={handleChange}
 								/>
 							</div>
 
@@ -113,8 +174,9 @@ const EditProfile = (props) => {
 								<br />
 								<input
 									type="text"
+									name="l_name"
 									value={userData.l_name}
-									onChange={(e) => setLastName(e.target.value)}
+									onChange={handleChange}
 								/>
 							</div>
 
@@ -123,8 +185,9 @@ const EditProfile = (props) => {
 								<br />
 								<input
 									type="text"
+									name="college"
 									value={userData.college}
-									onChange={(e) => setCollege(e.target.value)}
+									onChange={handleChange}
 								/>
 							</div>
 
@@ -133,8 +196,9 @@ const EditProfile = (props) => {
 								<br />
 								<input
 									type="email"
+									name="email"
 									value={userData.email}
-									onChange={(e) => setEmail(e.target.value)}
+									onChange={handleChange}
 								/>
 							</div>
 
@@ -143,8 +207,9 @@ const EditProfile = (props) => {
 								<br />
 								<input
 									type="tel"
+									name="phone"
 									value={userData.phone}
-									onChange={(e) => setPhone(e.target.value)}
+									onChange={handleChange}
 								/>
 							</div>
 
@@ -153,8 +218,10 @@ const EditProfile = (props) => {
 								<br />
 								<input
 									type="password"
+									name="password"
 									value={userData.password}
 									onChange={(e) => setCurrPassword(e.target.value)}
+									disabled
 								/>
 								<button onClick={password_toggle}>
 									{toggle ? (

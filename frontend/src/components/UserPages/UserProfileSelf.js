@@ -29,10 +29,15 @@ const UserProfileSelf = (props) => {
 		const fetchUserInfo = async () => {
 			try {
 				// const response = await fetch(`${process.env.REACT_APP_FETCH_URL}/user/profile/${user_id}`, {
+				const token = localStorage.getItem('access_token');
 				const response = await fetch(
-					`http://127.0.0.1:8080/user/profile/${user_id}`,
+					`http://127.0.0.1:8090/user/auth_profile`,
 					{
-						method: "GET",
+						method: "POST",
+						headers: {
+							'Authorization': `Bearer ${token}`
+						},
+
 					}
 				);
 				if (!response.ok) {
@@ -87,63 +92,56 @@ const UserProfileSelf = (props) => {
 						<div className="profile_self_container">
 							<div className="profile_self_icon">
 								<div
-									className={`profile_self_img_box ${
-										activeContent === "content1" && "profile_self_active"
-									}`}
+									className={`profile_self_img_box ${activeContent === "content1" && "profile_self_active"
+										}`}
 									style={{ "--i": "1" }}
 									onMouseOver={() => handleMouseOver("content1")}
 								>
 									<img src={username2_img} />
 								</div>
 								<div
-									className={`profile_self_img_box ${
-										activeContent === "content2" && "profile_self_active"
-									}`}
+									className={`profile_self_img_box ${activeContent === "content2" && "profile_self_active"
+										}`}
 									style={{ "--i": "2" }}
 									onMouseOver={() => handleMouseOver("content2")}
 								>
 									<img src={name2_img} />
 								</div>
 								<div
-									className={`profile_self_img_box ${
-										activeContent === "content6" && "profile_self_active"
-									}`}
+									className={`profile_self_img_box ${activeContent === "content6" && "profile_self_active"
+										}`}
 									style={{ "--i": "6" }}
 									onMouseOver={() => handleMouseOver("content6")}
 								>
 									<img src={user_profile_img} />
 								</div>
 								<div
-									className={`profile_self_img_box ${
-										activeContent === "content4" && "profile_self_active"
-									}`}
+									className={`profile_self_img_box ${activeContent === "content4" && "profile_self_active"
+										}`}
 									style={{ "--i": "4" }}
 									onMouseOver={() => handleMouseOver("content4")}
 								>
 									<img src={college2_img} />
 								</div>
 								<div
-									className={`profile_self_img_box ${
-										activeContent === "content5" && "profile_self_active"
-									}`}
+									className={`profile_self_img_box ${activeContent === "content5" && "profile_self_active"
+										}`}
 									style={{ "--i": "5" }}
 									onMouseOver={() => handleMouseOver("content5")}
 								>
 									<img src={email2_img} />
 								</div>
 								<div
-									className={`profile_self_img_box ${
-										activeContent === "content3" && "profile_self_active"
-									}`}
+									className={`profile_self_img_box ${activeContent === "content3" && "profile_self_active"
+										}`}
 									style={{ "--i": "3" }}
 									onMouseOver={() => handleMouseOver("content3")}
 								>
 									<img src={phone2_img} />
 								</div>
 								<div
-									className={`profile_self_img_box ${
-										activeContent === "content7" && "profile_self_active"
-									}`}
+									className={`profile_self_img_box ${activeContent === "content7" && "profile_self_active"
+										}`}
 									style={{ "--i": "7" }}
 									onMouseOver={() => handleMouseOver("content7")}
 								>
@@ -153,9 +151,8 @@ const UserProfileSelf = (props) => {
 
 							<div className="profile_self_content">
 								<div
-									className={`profile_self_content_box ${
-										activeContent === "content6" && "profile_self_active"
-									}`}
+									className={`profile_self_content_box ${activeContent === "content6" && "profile_self_active"
+										}`}
 									id="content6"
 								>
 									<div className="profile_self_card">
@@ -171,9 +168,8 @@ const UserProfileSelf = (props) => {
 									</div>
 								</div>
 								<div
-									className={`profile_self_content_box ${
-										activeContent === "content1" && "profile_self_active"
-									}`}
+									className={`profile_self_content_box ${activeContent === "content1" && "profile_self_active"
+										}`}
 									id="content1"
 								>
 									<div className="profile_self_card">
@@ -190,9 +186,8 @@ const UserProfileSelf = (props) => {
 								</div>
 
 								<div
-									className={`profile_self_content_box ${
-										activeContent === "content2" && "profile_self_active"
-									}`}
+									className={`profile_self_content_box ${activeContent === "content2" && "profile_self_active"
+										}`}
 									id="content2"
 								>
 									<div className="profile_self_card">
@@ -209,9 +204,8 @@ const UserProfileSelf = (props) => {
 								</div>
 
 								<div
-									className={`profile_self_content_box ${
-										activeContent === "content4" && "profile_self_active"
-									}`}
+									className={`profile_self_content_box ${activeContent === "content4" && "profile_self_active"
+										}`}
 									id="content4"
 								>
 									<div className="profile_self_card">
@@ -228,9 +222,8 @@ const UserProfileSelf = (props) => {
 								</div>
 
 								<div
-									className={`profile_self_content_box ${
-										activeContent === "content5" && "profile_self_active"
-									}`}
+									className={`profile_self_content_box ${activeContent === "content5" && "profile_self_active"
+										}`}
 									id="content5"
 								>
 									<div className="profile_self_card">
@@ -247,9 +240,8 @@ const UserProfileSelf = (props) => {
 								</div>
 
 								<div
-									className={`profile_self_content_box ${
-										activeContent === "content3" && "profile_self_active"
-									}`}
+									className={`profile_self_content_box ${activeContent === "content3" && "profile_self_active"
+										}`}
 									id="content3"
 								>
 									<div className="profile_self_card">
@@ -265,9 +257,8 @@ const UserProfileSelf = (props) => {
 									</div>
 								</div>
 								<div
-									className={`profile_self_content_box ${
-										activeContent === "content7" && "profile_self_active"
-									}`}
+									className={`profile_self_content_box ${activeContent === "content7" && "profile_self_active"
+										}`}
 									id="content7"
 								>
 									<div className="profile_self_card">

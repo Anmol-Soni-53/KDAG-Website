@@ -8,24 +8,50 @@ import icon_viewed from "./asset_viewed.png";
 import icon_commented from "./asset_comment.png";
 import DiscussionComment from "./DiscussionComment";
 import { jwtDecode } from "jwt-decode";
+import { useHistory } from "react-router-dom";
 
 const HeaderDiscussion = () => {
+	const history = useHistory();
 	const { post_id } = useParams();
 	const [post, setPost] = useState([]);
 	const [userId, setUserId] = useState("empty");
 	const token = localStorage.getItem("access_token");
-	useEffect(() => {
-		if (token) {
-			try {
-				const decodedToken = jwtDecode(token);
-				if (decodedToken && decodedToken.sub && decodedToken.sub.user_id) {
-					setUserId(decodedToken.sub.user_id);
+	// useEffect(() => {
+	// 	if (token) {
+	// 		try {
+	// 			const decodedToken = jwtDecode(token);
+	// 			if (decodedToken && decodedToken.sub && decodedToken.sub.user_id) {
+	// 				setUserId(decodedToken.sub.user_id);
+	// 				console.log(userId)
+	// 			}
+	// 		} catch (error) {
+	// 			console.error("Error decoding token:", error);
+	// 		}
+	// 	}
+	// }, [token]);
+	const fetchUserDetails = async () => {
+		try {
+			const token = localStorage.getItem('access_token');
+			const response = await fetch('http://127.0.0.1:8090/user/auth_profile', {
+				method: 'POST',
+				headers: {
+					'Authorization': `Bearer ${token}`
 				}
-			} catch (error) {
-				console.error("Error decoding token:", error);
+			});
+			if (!response.ok) {
+				throw new Error('Failed to fetch user details');
 			}
+			const userData = await response.json();
+			// console.log('User Details:', userData);
+			setUserId(userData['_id']);
+			console.log(userId);
+		} catch (error) {
+			console.error('Error fetching user details:', error.message);
 		}
-	}, [token]);
+	};
+
+	fetchUserDetails();
+
 
 	const userProfileLink =
 		userId === post.author_id
@@ -37,7 +63,7 @@ const HeaderDiscussion = () => {
 			try {
 				// const response = await fetch(`${process.env.REACT_APP_FETCH_URL}/get_posts`, {
 				const response = await fetch(
-					`http://127.0.0.1:8080/get_post/${post_id}`,
+					`http://127.0.0.1:8090/get_post/${post_id}`,
 					{
 						method: "GET",
 					}
@@ -60,6 +86,38 @@ const HeaderDiscussion = () => {
 
 		fetchPosts();
 	}, []);
+
+	const handleDelete = async () => {
+		try {
+			// Make an API call to delete the data on the server
+			const token = localStorage.getItem('access_token');
+			const response = await fetch(`http://127.0.0.1:8090/delete_post/${post_id}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+				// You can include a request body if required
+				// body: JSON.stringify({}),
+			});
+
+			// Check if the deletion was successful
+			if (response.ok) {
+				console.log('Data deleted successfully');
+				history.push("/forum");
+
+			} else {
+				// Handle error response from the server
+				const errorData = await response.json();
+				console.error('Error deleting data:', errorData);
+			}
+		} catch (error) {
+			// Handle network errors or other unexpected errors
+			console.error('Error deleting data:', error);
+		}
+	};
 
 	const [showReplies, setShowReplies] = useState(false);
 
@@ -121,10 +179,10 @@ const HeaderDiscussion = () => {
 							</button>
 						</div>
 						<div className="header-discussion-card-actions-delete">
-							<Link to="/create_comment">Comment</Link>
+							<Link to="/create_comment">Comments</Link>
 						</div>
 						<div className="header-discussion-card-actions-delete">
-							<button>Delete post</button>
+							<button onClick={handleDelete}>Delete post</button>
 						</div>
 					</div>
 				</div>

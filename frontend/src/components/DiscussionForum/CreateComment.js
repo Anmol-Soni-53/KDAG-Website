@@ -24,7 +24,7 @@ const CreateComment = (props) => {
 			};
 
 			const response = await fetch(
-				`http://127.0.0.1:8080/reply//create_reply/<string:pid>`,
+				`http://127.0.0.1:8090/reply//create_reply/<string:pid>`,
 				{
 					method: "POST",
 					headers: {

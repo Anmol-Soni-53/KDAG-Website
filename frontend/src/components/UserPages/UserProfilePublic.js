@@ -17,14 +17,33 @@ import "./UserProfilePublic.css";
 const UserProfilePublic = (props) => {
 	const { user_id } = useParams();
 	const [userData, setUserData] = useState([]);
+	// useEffect(() => {
+	// 	const fetchUserInfo = async () => {
+	// 		try {
+	// 			const response = await fetch(`http://127.0.0.1:8090/user/profile/${user_id}`);
+	// 			if (!response.ok) {
+	// 				const errorData = await response.json();
+	// 				console.error("Error fetching User Info:", errorData.message);
+	// 			} else {
+	// 				const userData = await response.json();
+	// 				console.log("User Info fetched successfully:", userData);
+	// 				setUserData(userData);
+	// 			}
+	// 		} catch (error) {
+	// 			console.error("Error fetching User Info:", error);
+	// 		}
+	// 	};
+
+	// 	fetchUserInfo();
+	// }, [user_id]); // Dependency array added
 	useEffect(() => {
 		const fetchUserInfo = async () => {
 			try {
 				// const response = await fetch(`${process.env.REACT_APP_FETCH_URL}/user/profile/${user_id}`, {
 				const response = await fetch(
-					`http://127.0.0.1:8080/user/profile/${user_id}`,
+					`http://127.0.0.1:8090/user/profile/${user_id}`,
 					{
-						method: "GET",
+						method: "POST",
 					}
 				);
 				if (!response.ok) {
@@ -45,7 +64,7 @@ const UserProfilePublic = (props) => {
 
 		fetchUserInfo();
 	}, []);
-	
+
 	const { showLogout } = props;
 	const history = useHistory();
 	useEffect(() => {
@@ -67,9 +86,8 @@ const UserProfilePublic = (props) => {
 						<div className="profile_container">
 							<div className="profile_icon">
 								<div
-									className={`profile_img_box ${
-										activeContent === "content1" && "profile_active"
-									}`}
+									className={`profile_img_box ${activeContent === "content1" && "profile_active"
+										}`}
 									style={{ "--i": "1" }}
 									onMouseOver={() => handleMouseOver("content1")}
 								>
@@ -77,9 +95,8 @@ const UserProfilePublic = (props) => {
 								</div>
 
 								<div
-									className={`profile_img_box ${
-										activeContent === "content2" && "profile_active"
-									}`}
+									className={`profile_img_box ${activeContent === "content2" && "profile_active"
+										}`}
 									style={{ "--i": "2" }}
 									onMouseOver={() => handleMouseOver("content2")}
 								>
@@ -87,9 +104,8 @@ const UserProfilePublic = (props) => {
 								</div>
 
 								<div
-									className={`profile_img_box ${
-										activeContent === "content3" && "profile_active"
-									}`}
+									className={`profile_img_box ${activeContent === "content3" && "profile_active"
+										}`}
 									style={{ "--i": "3" }}
 									onMouseOver={() => handleMouseOver("content3")}
 								>
@@ -97,9 +113,8 @@ const UserProfilePublic = (props) => {
 								</div>
 
 								<div
-									className={`profile_img_box ${
-										activeContent === "content4" && "profile_active"
-									}`}
+									className={`profile_img_box ${activeContent === "content4" && "profile_active"
+										}`}
 									style={{ "--i": "4" }}
 									onMouseOver={() => handleMouseOver("content4")}
 								>
@@ -107,9 +122,8 @@ const UserProfilePublic = (props) => {
 								</div>
 
 								<div
-									className={`profile_img_box ${
-										activeContent === "content5" && "profile_active"
-									}`}
+									className={`profile_img_box ${activeContent === "content5" && "profile_active"
+										}`}
 									style={{ "--i": "5" }}
 									onMouseOver={() => handleMouseOver("content5")}
 								>
@@ -119,9 +133,8 @@ const UserProfilePublic = (props) => {
 
 							<div className="profile_content">
 								<div
-									className={`profile_content_box ${
-										activeContent === "content3" && "profile_active"
-									}`}
+									className={`profile_content_box ${activeContent === "content3" && "profile_active"
+										}`}
 									id="content3"
 								>
 									<div className="profile_card">
@@ -136,9 +149,8 @@ const UserProfilePublic = (props) => {
 									</div>
 								</div>
 								<div
-									className={`profile_content_box ${
-										activeContent === "content1" && "profile_active"
-									}`}
+									className={`profile_content_box ${activeContent === "content1" && "profile_active"
+										}`}
 									id="content1"
 								>
 									<div className="profile_card">
@@ -155,9 +167,8 @@ const UserProfilePublic = (props) => {
 								</div>
 
 								<div
-									className={`profile_content_box ${
-										activeContent === "content2" && "profile_active"
-									}`}
+									className={`profile_content_box ${activeContent === "content2" && "profile_active"
+										}`}
 									id="content2"
 								>
 									<div className="profile_card">
@@ -166,7 +177,7 @@ const UserProfilePublic = (props) => {
 										</div>
 										<div className="profile_text_box">
 											<h2>
-											{userData.f_name}&nbsp;{userData.l_name} <br />
+												{userData.f_name}&nbsp;{userData.l_name} <br />
 												<span>Name</span>
 											</h2>
 										</div>
@@ -174,9 +185,8 @@ const UserProfilePublic = (props) => {
 								</div>
 
 								<div
-									className={`profile_content_box ${
-										activeContent === "content4" && "profile_active"
-									}`}
+									className={`profile_content_box ${activeContent === "content4" && "profile_active"
+										}`}
 									id="content4"
 								>
 									<div className="profile_card">
@@ -185,7 +195,7 @@ const UserProfilePublic = (props) => {
 										</div>
 										<div className="profile_text_box">
 											<h2>
-											{userData.college} <br />
+												{userData.college} <br />
 												<span>College</span>
 											</h2>
 										</div>
@@ -193,9 +203,8 @@ const UserProfilePublic = (props) => {
 								</div>
 
 								<div
-									className={`profile_content_box ${
-										activeContent === "content5" && "profile_active"
-									}`}
+									className={`profile_content_box ${activeContent === "content5" && "profile_active"
+										}`}
 									id="content5"
 								>
 									<div className="profile_card">
@@ -204,7 +213,7 @@ const UserProfilePublic = (props) => {
 										</div>
 										<div className="profile_text_box">
 											<h2>
-											{userData.email}  <br />
+												{userData.email}  <br />
 												<span>Email</span>
 											</h2>
 										</div>
