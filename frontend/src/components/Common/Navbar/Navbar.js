@@ -4,6 +4,8 @@ import "./Navbar.css";
 import logo from "./../../../assets/pics/KDAG-textnew.png";
 import Dropdown from "./Dropdown";
 import { Link, NavLink } from "react-router-dom";
+import forum_img from "../../../assets/pics/forum.png";
+import register_img from "../../../assets/pics/register.png";
 
 const active_style = {
 	borderBottom: "2px solid rgba(255, 255, 255, 0.8)",
@@ -11,7 +13,7 @@ const active_style = {
 	color: "rgba(255, 255, 255, 0.8)",
 };
 
-const Navbar = ({ color, noborder }) => {
+const Navbar = ({ color, noborder, showLogout }) => {
 	useEffect(() => {
 		const navColor = (e) => {
 			let nav = document.getElementsByClassName("kdag-nav")[0];
@@ -59,9 +61,6 @@ const Navbar = ({ color, noborder }) => {
 					<div className="kdag-nav-logo">
 						<Link to="/">
 							<img src={logo} alt="LOGO" />
-							{/* <div className="kdag-navbar-kdag">
-                KHARAGPUR DATA ANALYTICS GROUP
-              </div> */}
 						</Link>
 					</div>
 					<div className="kdag-nav-items">
@@ -88,7 +87,6 @@ const Navbar = ({ color, noborder }) => {
 							>
 								Team
 							</NavLink>
-							{/* {dropdown && <Dropdown/>} */}
 						</div>
 						<div className="kdag-nav-item">
 							<NavLink
@@ -98,8 +96,19 @@ const Navbar = ({ color, noborder }) => {
 							>
 								Alumni
 							</NavLink>
-							{/* {dropdown && <Dropdown/>} */}
 						</div>
+						<div className="kdag-nav-item">
+							<NavLink activeStyle={active_style} to="/forum">
+								<img src={forum_img} alt="" />
+							</NavLink>
+						</div>
+						{!showLogout && (
+							<div className="kdag-nav-item">
+								<NavLink activeStyle={active_style} to="/auth">
+									<img src={register_img} alt="" />
+								</NavLink>
+							</div>
+						)}
 						{/* <div className="kdag-nav-item">
               <Link to="#">Go Down</Link>
             </div> */}
@@ -158,6 +167,20 @@ const Navbar = ({ color, noborder }) => {
 									<li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
 										<NavLink to="/alumni">Alumni</NavLink>
 									</li>
+									<li>
+										<NavLink to="/forum">
+											{" "}
+											<img src={forum_img} alt="" />
+										</NavLink>
+									</li>
+									{!showLogout && (
+										<li>
+											<NavLink to="/auth">
+												{" "}
+												<img src={register_img} alt="" />
+											</NavLink>
+										</li>
+									)}
 								</ul>
 							</li>
 						</ul>
