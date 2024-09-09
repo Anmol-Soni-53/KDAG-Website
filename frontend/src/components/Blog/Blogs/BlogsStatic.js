@@ -1,3 +1,7 @@
+import img18 from "../../../assets/pics/blogs/Neuralangelo.jpg"
+import img17 from "../../../assets/pics/blogs/SAM2.jpg"
+import img16 from "../../../assets/pics/blogs/ML_Digest_Llama_3o1.jpg"
+import img15 from "../../../assets/pics/blogs/Decoding Math Notes.png"
 import img14 from "../../../assets/pics/blogs/google_cloud_credits.png"
 import img13 from "../../../assets/pics/blogs/UnveilingtheCosmos.png"
 import img12 from "../../../assets/pics/blogs/3d_Ken_Burns.gif"
@@ -168,7 +172,53 @@ const blogs = [
         tag: ["Data Science", "Machine Learning", "Google", "Cloud Credits", "Computing Power"],
         link: "https://kdagiit.medium.com/unlocking-horizons-with-google-cloud-credits-2fd0ed44d5d0",
         date: "17 Oct,2023"
+    },
+    {
+        index: "15",
+        img: img15,
+        topic: "ML Digest Blog Series",
+        title: "Decoding Math Notes: Apple's Latest Feature on iPadOS 18 and Uncovering VLMs",
+        authors: {},
+        description: "Welcome to the first post of ML Digest! In this series, brought to you by KDAG and Chi SquareX, we’ll explore the latest in machine learning, AI, and their impact on the world. In this inaugural post, we dive into Apple’s new iPadOS 18 feature that decodes math notes using Vision Language Models (VLMs). This technology combines computer vision with natural language processing to interpret handwritten math, enhancing educational tools and user experiences. Discover how Apple’s integration of VLMs is setting the stage for the future of AI-driven learning.",
+        tag: ["Machine Learning","AI","Computer Vision","Natural Language Processing","Education Technology","iPadOS","Vision Language Models"],
+        link: "https://kdagiit.medium.com/decoding-math-notes-apples-latest-feature-on-ipados-18-and-uncovering-vlms-d21f9a2ddfae",
+        date: "9 Aug, 2024"
+    },
+    {
+        index: "16",
+        img: img16,
+        topic: "ML Digest Blog Series",
+        title: "Breaking Barriers With LLAMA 3.1: A New Era of Open-Source AI",
+        authors: {},
+        description: "We’re back with another exciting post in the ML Digest series! Brought to you by KDAG and Chi SquareX, this blog dives into the latest advancements in AI technology. In this edition, we explore LLaMA 3.1, the groundbreaking model that’s revolutionizing the open-source AI landscape. Discover how this new release is setting new standards and pushing the boundaries of artificial intelligence with its cutting-edge features.Join us as we delve into the innovations of LLaMA 3.1 and its impact on the future of AI. Whether you're passionate about AI development or just curious about the latest tech trends, this blog provides a deep dive into the transformative potential of LLaMA 3.1.",
+        tag: ["LLaMA 3.1","AI","Open-Source AI","Natural Language Processing","AI Innovation","Language Models"],
+        link: "https://kdagiit.medium.com/breaking-barriers-with-llama-3-1-a-new-era-of-open-source-ai-8dedadf0dfeb",
+        date: "13 Aug, 2024"
+    },
+    {
+        index: "17",
+        img: img17,
+        topic: "ML Digest Blog Series",
+        title: "Advancing Video & Image Segmentation: A Deep Drive to SAM2",
+        authors: {},
+        description: "Brought to you by KDAG and Chi SquareX, this edition of our blog dives deep into the cutting-edge innovations of SAM 2—the next-gen model redefining image and video segmentation. Discover how SAM 2 takes the groundbreaking features of its predecessor and pushes them even further into the dynamic world of video processing, opening up a new era for AI-driven visual technology.Join us as we explore the transformative potential of SAM 2 and its real-world applications. Don’t miss out on this exciting read!",
+        tag: ["SAM2","AI","Machine Learning","ComputerVision","KDAG","Innovation", "ChiSquareX"],
+        link: "https://kdagiit.medium.com/advancing-video-and-image-segmentation-a-deep-dive-into-sam2-e9f30d9456e3",
+        date: "22 Aug, 2024"
+    },
+    {
+        index: "18",
+        img: img18,
+        topic: "ML Digest Blog Series",
+        title: "Neuralangelo: Where Code Becomes Canvas",
+        authors: {},
+        description: "We’re back with another exciting post in the ML Digest series! Brought to you by KDAG and Chi SquareX, this blog continues to explore the cutting-edge developments in AI technology. In this edition, we focus on Neuralangelo by NVIDIA, a revolutionary AI model that transforms the digital canvas of code into lifelike 3D masterpieces.Discover how Neuralangelo is pushing the boundaries of 3D reconstruction by seamlessly integrating advanced computer vision and neural networks. Whether you’re an AI enthusiast or curious about the latest tech innovations, this blog provides a deep dive into how Nvidia’s Neuralangelo is redefining the future of digital artistry.",
+        tag: ["NVIDIA","AI","Machine Learning","KDAG","digital canvas", "ChiSquareX"],
+        link: "http://bit.ly/neuralangelo",
+        date: "5 Sept, 2024"
     }
+
+
 
 ];
 
